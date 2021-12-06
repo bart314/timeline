@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+  <!-- https://github.com/jiahuang/d3-timeline -->
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script src="d3-timeline.js"></script>
+
+  <style type="text/css">
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: black;
+      shape-rendering: crispEdges;
+    }
+
+    .axis text {
+      font-family: sans-serif;
+      font-size: 10px;
+    }
+
+    .timeline-label {
+      font-family: sans-serif;
+      font-size: 12px;
+    }
+
+    #timeline2 .axis {
+      transform: translate(0px,40px);
+      -ms-transform: translate(0px,40px); /* IE 9 */
+      -webkit-transform: translate(0px,40px); /* Safari and Chrome */
+      -o-transform: translate(0px,40px); /* Opera */
+      -moz-transform: translate(0px,40px); /* Firefox */
+    }
+    
+    .coloredDiv {
+      height:20px; width:20px; float:left;
+    }
+
+    #main { width:80vw;border:solid red 1px;}
+  </style>
+</head>
+
+<body>
+    
+<div id="main">
+  <h3>Renaissance timeline</h3>
+   <div id="timeline"></div>
+</div>
+</body>
+
+
+<script>
+  const width = document.querySelector('#main').offsetWidth
+  function create_timeline(data) {
+    var chart = d3.timeline()
+    .tickFormat(
+          {
+          format:d3.time.format("%Y"),
+          tickInterval: 1,
+          tickSize: 30})
+      .beginning(new Date(1350,1,1)) // we can optionally add beginning and ending times to speed up rendering a little
+      .ending(new Date(1700,1,1))
+      .showTimeAxisTick() // toggles tick marks
+      .stack() // toggles graph stacking
+      .margin({left:70, right:30, top:0, bottom:0})
+    var svg = d3.select("#timeline").append("svg").attr("width", width)
+      .datum(data).call(chart);
+  }
+
+function translate_data(json) {
+  let rv = []
+  json.forEach((el,idx) => {
+    let tmp = {"class":"jackie"}
+    tmp.label = el.naam
+    tmp.times = [{
+      starting_time:new Date(el.van),
+      ending_time:new Date(el.tot)
+    }]
+    tmp.url = el.url
+    rv.push(tmp)
+  })
+
+  return rv
+}
+
+fetch('data.json')
+  .then( resp => resp.json() )
+  .then (json => translate_data(json) )
+  .then (data => create_timeline(data) )
+  .then ( e => {
+    document.querySelectorAll("rect, text").forEach(el => {
+      el.addEventListener('click', e => console.log(e))
+    })
+  })
+
+</script>
+</html>
