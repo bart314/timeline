@@ -33,7 +33,7 @@
         rotateTicks = false,
         timeIsRelative = false,
         fullLengthBackgrounds = false,
-        itemHeight = 20,
+        itemHeight = 25,
         itemMargin = 5,
         navMargin = 60,
         showTimeAxis = true,
@@ -244,7 +244,7 @@
         chartData = d;
         d.forEach( function(datum, index){
           var data = datum.times;
-          var hasLabel = (typeof(datum.label) != "undefined");
+          //var hasLabel = (typeof(datum.label) != "undefined");
 
           // issue warning about using id per data set. Ids should be individual to data elements
           // BB I want to be this id individual to each data element.
@@ -269,7 +269,6 @@
             .attr("cx", getXPos)
             .attr("r", itemHeight / 2)
             .attr("height", itemHeight)
-            .attr('label','henk')
             .style("fill", function(d, i){
               var dColorPropName;
               if (d.color) return d.color;
@@ -314,10 +313,8 @@
             .append("text")
             .attr("x", getXPos)
             .attr("y", getStackTextPosition)
-            .text(datum.label) //function(d) {
-            //   return d.label;
-            // })
-          
+            .attr("id", (d,i) => datum.id)
+            .text( (d,i) => d.label) 
 
           if (rowSeparatorsColor) {
             var lineYAxis = ( itemHeight + itemMargin / 2 + margin.top + (itemHeight + itemMargin) * yAxisMapping[index]);

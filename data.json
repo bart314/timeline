@@ -1,5 +1,5 @@
 [
-    {
+    [{
       "naam": "Leon Battista Alberti",
       "van": "1404-02-18",
       "tot": "1472-04-14",
@@ -12,126 +12,49 @@
       "url": "https://it.wikipedia.org/wiki/Bindo_Altoviti"
     },
     {
-      "naam": "Pietro Aretino",
-      "van": "1492-04-20",
-      "tot": "1556-10-21",
-      "url": "https://it.wikipedia.org/wiki/Pietro_Aretino"
-    },
-    {
-      "naam": "Baccio Bandinelli",
-      "van": "1493-11-12",
-      "tot": "1560-02-07",
-      "url": "https://it.wikipedia.org/wiki/Baccio_Bandinelli"
-    },
-    {
-      "naam": "Vincenzo Borghini",
-      "van": "1515-10-29",
-      "tot": "1580-08-25",
-      "url": "https://it.wikipedia.org/wiki/Vincenzo_Borghini"
-    },
-    {
-      "naam": "Sandro Boticcelli",
-      "van": "1445-03-01",
-      "tot": "1510-05-17",
-      "url": "https://it.wikipedia.org/wiki/Sandro_Botticelli"
-    },
-    {
-      "naam": "Donato Bramante",
-      "van": "1444-01-01",
-      "tot": "1514-04-11",
-      "url": "https://it.wikipedia.org/wiki/Bramante"
-    },
-    {
-      "naam": "Agnolo Bronzino",
-      "van": "1503-11-17",
-      "tot": "1572-11-23",
-      "url": "https://it.wikipedia.org/wiki/Agnolo_Bronzino"
-    },
-    {
-      "naam": "Filippo Brunelleschi",
-      "van": "1377-01-01",
-      "tot": "1446-04-16",
-      "url": "https://it.wikipedia.org/wiki/Filippo_Brunelleschi"
-    },
-    {
       "naam": "Buonamico Buffalmacco",
-      "van": "1290-01-01-",
+      "van": "1290-01-01",
       "tot": "1340-01-01",
       "url": "https://it.wikipedia.org/wiki/Buonamico_Buffalmacco"
-    },
-    {
-      "naam": "Benvenuto Cellini",
-      "van": "1500-11-03",
-      "tot": "1571-02-13",
-      "url": "https://it.wikipedia.org/wiki/Benvenuto_Cellini"
-    },
-    {
-      "naam": "Agostino Chigi",
-      "van": "1466-11-29",
-      "tot": "1520-04-11",
-      "url": "https://it.wikipedia.org/wiki/Agostino_Chigi"
-    },
-    {
+    }],
+
+    [{
       "naam": "Dante Alighieri",
       "van": "1265-07-12",
       "tot": "1321-09-13",
       "url": "https://it.wikipedia.org/wiki/Dante_Alighieri"
-    },
-    {
-      "naam": "Donatello",
-      "van": "1386-01-01",
-      "tot": "1466-12-13",
-      "url": "https://it.wikipedia.org/wiki/Donatello"
-    },
-    {
-      "naam": "Albrecht Dürer",
-      "van": "1471-05-12",
-      "tot": "1528-04-06",
-      "url": "https://it.wikipedia.org/wiki/Albrecht_Dürer"
-    },
-    {
+      },
+      {
+      "naam": "Filippo Brunelleschi",
+      "van": "1377-01-01",
+      "tot": "1446-04-16",
+      "url": "https://it.wikipedia.org/wiki/Filippo_Brunelleschi"
+    },   {
+      "naam": "Michelangelo Buonarroti",
+      "van": "1472-03-06",
+      "tot": "1564-02-18",
+      "url": "https://it.wikipedia.org/wiki/Michelangelo_Buonarroti"
+    }],
+
+    [{
       "naam": "Giotto di Bondone",
       "van": "1267-01-01",
       "tot": "1337-01-08",
       "url": "https://it.wikipedia.org/wiki/Giotto"
     },
     {
-      "naam": "Paolo Giovio",
-      "van": "1483-04-21",
-      "tot": "1552-12-05",
-      "url": "https://it.wikipedia.org/wiki/Paolo_Giovio"
-    },
-    {
-      "naam": "Giovanni Antonio Lappoli",
-      "van": "1492-01-01",
-      "tot": "1552-01-01",
-      "url": "https://it.wikipedia.org/wiki/Giovanni_Antonio_Lappoli"
-    },
-    {
-      "naam": "Leonardo da Vinci",
-      "van": "1452-04-15",
-      "tot": "1519-05-02",
-      "url": "https://it.wikipedia.org/wiki/Leonardo_da_Vinci"
-    },
-    {
-      "naam": "Niccolò Machiavelli",
-      "van": "1469-05-03",
-      "tot": "1527-07-21",
-      "url": "https://it.wikipedia.org/wiki/Niccolò_Machiavelli"
-    },
-    {
-      "naam": "Michelangelo Buonarroti",
-      "van": "1472-03-06",
-      "tot": "1564-02-18",
-      "url": "https://it.wikipedia.org/wiki/Michelangelo_Buonarroti"
-    },
-    {
-      "naam": "Pietro Perugino",
-      "van": "1448-01-01",
-      "tot": "1523-02-01",
-      "url": "https://it.wikipedia.org/wiki/Perugino"
-    },
-    {
+      "naam": "Donatello",
+      "van": "1386-01-01",
+      "tot": "1466-12-13",
+      "url": "https://it.wikipedia.org/wiki/Donatello"
+    },   {
+      "naam": "Pietro Aretino",
+      "van": "1492-04-20",
+      "tot": "1556-10-21",
+      "url": "https://it.wikipedia.org/wiki/Pietro_Aretino"
+    }],
+
+    [{
       "naam": "Francesco Petrarca",
       "van": "1304-07-20",
       "tot": "1374-07-19",
@@ -142,41 +65,109 @@
       "van": "1416-09-12",
       "tot": "1492-10-12",
       "url": "https://it.wikipedia.org/wiki/Piero_della_Francesca"
-    },
-    {
-      "naam": "Raphael Sanzio",
-      "van": "1483-04-06",
-      "tot": "1520-04-20",
-      "url": "https://it.wikipedia.org/wiki/Raffaello_Sanzio"
-    },
-    {
-      "naam": "Peter Paul Rubens",
-      "van": "1577-06-28",
-      "tot": "1640-05-30",
-      "url": "https://it.wikipedia.org/wiki/Pieter_Paul_Rubens"
-    },
-    {
-      "naam": "Francesco Salviati",
-      "van": "1510-01-01",
-      "tot": "1563-11-11",
-      "url": "https://it.wikipedia.org/wiki/Francesco_Salviati"
-    },
-    {
-      "naam": "Tiziano Vecellio",
-      "van": "1490-01-01",
-      "tot": "1576-08-27",
-      "url": "https://it.wikipedia.org/wiki/Tiziano_Vecellio"
-    },
-    {
-      "naam": "Benedetto Varchi",
-      "van": "1503-03-19",
-      "tot": "1565-12-18",
-      "url": "https://it.wikipedia.org/wiki/Benedetto_Varchi"
-    },
+    },    
     {
       "naam": "Giorgio Vasari",
       "van": "1511-07-11",
       "tot": "1574-06-27",
       "url": "https://it.wikipedia.org/wiki/Giorgio_Vasari"
-    }
+    }],
+
+    [{
+      "naam": "Sandro Boticcelli",
+      "van": "1445-03-01",
+      "tot": "1510-05-17",
+      "url": "https://it.wikipedia.org/wiki/Sandro_Botticelli"
+    },    
+    {
+      "naam": "Vincenzo Borghini",
+      "van": "1515-10-29",
+      "tot": "1580-08-25",
+      "url": "https://it.wikipedia.org/wiki/Vincenzo_Borghini"
+    }],
+
+    [{
+      "naam": "Baccio Bandinelli",
+      "van": "1493-11-12",
+      "tot": "1560-02-07",
+      "url": "https://it.wikipedia.org/wiki/Baccio_Bandinelli"
+    }],
+    [{
+      "naam": "Donato Bramante",
+      "van": "1444-01-01",
+      "tot": "1514-04-11",
+      "url": "https://it.wikipedia.org/wiki/Bramante"
+    }],
+    [{
+      "naam": "Agnolo Bronzino",
+      "van": "1503-11-17",
+      "tot": "1572-11-23",
+      "url": "https://it.wikipedia.org/wiki/Agnolo_Bronzino"
+    }],
+    [{
+      "naam": "Benvenuto Cellini",
+      "van": "1500-11-03",
+      "tot": "1571-02-13",
+      "url": "https://it.wikipedia.org/wiki/Benvenuto_Cellini"
+    }],
+    [{
+      "naam": "Agostino Chigi",
+      "van": "1466-11-29",
+      "tot": "1520-04-11",
+      "url": "https://it.wikipedia.org/wiki/Agostino_Chigi"
+    }],
+    [{
+      "naam": "Albrecht Dürer",
+      "van": "1471-05-12",
+      "tot": "1528-04-06",
+      "url": "https://it.wikipedia.org/wiki/Albrecht_Dürer"
+    }],
+    [{
+      "naam": "Paolo Giovio",
+      "van": "1483-04-21",
+      "tot": "1552-12-05",
+      "url": "https://it.wikipedia.org/wiki/Paolo_Giovio"
+    }],
+    [{
+      "naam": "Giovanni Antonio Lappoli",
+      "van": "1492-01-01",
+      "tot": "1552-01-01",
+      "url": "https://it.wikipedia.org/wiki/Giovanni_Antonio_Lappoli"
+    }],
+    [{
+      "naam": "Leonardo da Vinci",
+      "van": "1452-04-15",
+      "tot": "1519-05-02",
+      "url": "https://it.wikipedia.org/wiki/Leonardo_da_Vinci"
+    }],
+    [{
+      "naam": "Pietro Perugino",
+      "van": "1448-01-01",
+      "tot": "1523-02-01",
+      "url": "https://it.wikipedia.org/wiki/Perugino"
+    }],
+    [{
+      "naam": "Raphael Sanzio",
+      "van": "1483-04-06",
+      "tot": "1520-04-20",
+      "url": "https://it.wikipedia.org/wiki/Raffaello_Sanzio"
+    }],
+    [{
+      "naam": "Francesco Salviati",
+      "van": "1510-01-01",
+      "tot": "1563-11-11",
+      "url": "https://it.wikipedia.org/wiki/Francesco_Salviati"
+    }],
+    [{
+      "naam": "Tiziano Vecellio",
+      "van": "1490-01-01",
+      "tot": "1576-08-27",
+      "url": "https://it.wikipedia.org/wiki/Tiziano_Vecellio"
+    }],
+    [{
+      "naam": "Benedetto Varchi",
+      "van": "1503-03-19",
+      "tot": "1565-12-18",
+      "url": "https://it.wikipedia.org/wiki/Benedetto_Varchi"
+    }]
   ]
