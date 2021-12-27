@@ -1,4 +1,4 @@
-[
+{ "artists" : [
     [{
       "naam": "Leon Battista Alberti",
       "van": "1404-02-18",
@@ -86,88 +86,144 @@
       "url": "https://it.wikipedia.org/wiki/Vincenzo_Borghini"
     }],
 
-    [{
+    {
       "naam": "Baccio Bandinelli",
       "van": "1493-11-12",
       "tot": "1560-02-07",
       "url": "https://it.wikipedia.org/wiki/Baccio_Bandinelli"
-    }],
-    [{
+    },
+    {
       "naam": "Donato Bramante",
       "van": "1444-01-01",
       "tot": "1514-04-11",
       "url": "https://it.wikipedia.org/wiki/Bramante"
-    }],
-    [{
+    },
+    {
       "naam": "Agnolo Bronzino",
       "van": "1503-11-17",
       "tot": "1572-11-23",
       "url": "https://it.wikipedia.org/wiki/Agnolo_Bronzino"
-    }],
-    [{
+    },
+    {
       "naam": "Benvenuto Cellini",
       "van": "1500-11-03",
       "tot": "1571-02-13",
       "url": "https://it.wikipedia.org/wiki/Benvenuto_Cellini"
-    }],
-    [{
+    },
+    {
       "naam": "Agostino Chigi",
       "van": "1466-11-29",
       "tot": "1520-04-11",
       "url": "https://it.wikipedia.org/wiki/Agostino_Chigi"
-    }],
-    [{
+    },
+    {
       "naam": "Albrecht Dürer",
       "van": "1471-05-12",
       "tot": "1528-04-06",
       "url": "https://it.wikipedia.org/wiki/Albrecht_Dürer"
-    }],
-    [{
+    },
+    {
       "naam": "Paolo Giovio",
       "van": "1483-04-21",
       "tot": "1552-12-05",
       "url": "https://it.wikipedia.org/wiki/Paolo_Giovio"
-    }],
-    [{
+    },
+    {
       "naam": "Giovanni Antonio Lappoli",
       "van": "1492-01-01",
       "tot": "1552-01-01",
       "url": "https://it.wikipedia.org/wiki/Giovanni_Antonio_Lappoli"
-    }],
-    [{
+    },
+    {
       "naam": "Leonardo da Vinci",
       "van": "1452-04-15",
       "tot": "1519-05-02",
       "url": "https://it.wikipedia.org/wiki/Leonardo_da_Vinci"
-    }],
-    [{
+    },
+    {
       "naam": "Pietro Perugino",
       "van": "1448-01-01",
       "tot": "1523-02-01",
       "url": "https://it.wikipedia.org/wiki/Perugino"
-    }],
-    [{
+    },
+    {
       "naam": "Raphael Sanzio",
       "van": "1483-04-06",
       "tot": "1520-04-20",
       "url": "https://it.wikipedia.org/wiki/Raffaello_Sanzio"
-    }],
-    [{
+    },
+    {
       "naam": "Francesco Salviati",
       "van": "1510-01-01",
       "tot": "1563-11-11",
       "url": "https://it.wikipedia.org/wiki/Francesco_Salviati"
-    }],
-    [{
+    },
+    {
       "naam": "Tiziano Vecellio",
       "van": "1490-01-01",
       "tot": "1576-08-27",
       "url": "https://it.wikipedia.org/wiki/Tiziano_Vecellio"
-    }],
-    [{
+    },
+    {
       "naam": "Benedetto Varchi",
       "van": "1503-03-19",
       "tot": "1565-12-18",
       "url": "https://it.wikipedia.org/wiki/Benedetto_Varchi"
-    }]
-  ]
+    }
+  ],
+  "medici": [
+    {
+      "naam": "Cosimo de' Medici",
+      "van": "1389-09-27",
+      "tot": "1464-08-01",
+      "url": "https://it.wikipedia.org/wiki/Cosimo_de%27_Medici"
+    },
+    {
+      "naam": "Lorenzo de'Medici",
+      "van": "1449-01-01",
+      "tot": "1492-04-08",
+      "url": "https://it.wikipedia.org/wiki/Lorenzo_de%27_Medici"
+    },
+    {
+      "naam": "Giovanni de'Medici",
+      "van": "1475-12-11",
+      "tot": "1521-12-01",
+      "url": "https://it.wikipedia.org/wiki/Papa_Leone_X"
+    },
+    {
+      "naam": "Giulio de'Medici",
+      "van": "1478-05-26",
+      "tot": "1534-09-25",
+      "url": "https://it.wikipedia.org/wiki/Papa_Clemente_VII"
+    },
+    {
+      "naam": "Ottaviano de'Medici",
+      "van": "1484-07-14",
+      "tot": "1546-05-28",
+      "url": "https://it.wikipedia.org/wiki/Ottaviano_de%27_Medici"
+    },
+    {
+      "naam": "Alessandro de' Medici",
+      "van": "1510-07-22",
+      "tot": "1537-01-06",
+      "url": "https://it.wikipedia.org/wiki/Alessandro_de%27_Medici_(duca_di_Firenze)"
+    },
+    {
+      "naam": "Ippolito de'Medici",
+      "van": "1511-03-01",
+      "tot": "1535-10-10",
+      "url": "https://it.wikipedia.org/wiki/Ippolito_de%27_Medici"
+    },
+    {
+      "naam": "Caterina de'Medici",
+      "van": "1518-04-13",
+      "tot": "1589-01-05",
+      "url": "https://it.wikipedia.org/wiki/Caterina_de%27_Medici"
+    },
+    {
+      "naam": "Francesco de' Medici",
+      "van": "1541-03-25",
+      "tot": "1587-10-19",
+      "url": "https://it.wikipedia.org/wiki/Francesco_I_de%27_Medici"
+    }
+  ]}

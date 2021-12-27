@@ -1,7 +1,9 @@
 <!doctype html>
 <html>
 <head>
-  <!-- https://github.com/jiahuang/d3-timeline -->
+  <meta charset="utf-8"/>
+  <title>Renaissance tijdlijn</title>
+
   <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
   <script src="d3-timeline.js"></script>
 
@@ -62,29 +64,39 @@
       .beginning(new Date(1300,1,1)) // we can optionally add beginning and ending times to speed up rendering a little
       .ending(new Date(1700,1,1))
       .showTimeAxisTick() // toggles tick marks
-      .stack() // toggles graph stacking
+      .stack()
       .margin({left:70, right:30, top:0, bottom:0})
+      .hlines([19])
+    chart.hlines = [19, 9]
     var svg = d3.select("#timeline").append("svg").attr("width", width)
       .datum(data).call(chart);
   }
 
-function translate_data(json) {
-  let rv = []
-  json.forEach( el => {
-    tmp_array = []
-    el.forEach ( (data,id) => {
-      let tmp = {
+function get_data_point(data) {
+  return  {
         starting_time:new Date(data.van),
         ending_time:new Date(data.tot),
         label:data.naam,
         url: data.url
       }
-      tmp_array.push(tmp)
-    })
-    rv.push({'times':tmp_array})
-  })
+}
 
-  return rv
+function translate_data(json) {
+  const cats = ['artists','medici']
+  let rv = []
+  cats.forEach( cat => {
+    json[cat].forEach( el => {
+      tmp_array = []
+      if (el.length != undefined) {  // el is array of arrays
+        el.forEach ( (data,id) => tmp_array.push(get_data_point(data)) )
+      } else {
+        tmp_array.push(get_data_point(el))
+      }
+
+      rv.push({'times':tmp_array})
+    })
+  })
+  return rv 
 }
 
 fetch('data.json')

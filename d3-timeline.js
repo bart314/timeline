@@ -29,6 +29,7 @@
         labelMargin = 0,
         ending = 0,
         margin = {left: 30, right:30, top: 30, bottom:30},
+        hlines = [],
         stacked = false,
         rotateTicks = false,
         timeIsRelative = false,
@@ -190,36 +191,9 @@
 
       // check how many stacks we're gonna need
       // do this here so that we can draw the axis before the graph
-      if (stacked || ending === 0 || beginning === 0) {
-        g.each(function (d, i) {
-          d.forEach(function (datum, index) {
-
-            // create y mapping for stacked graph
-            if (stacked && Object.keys(yAxisMapping).indexOf(index) == -1) {
-              yAxisMapping[index] = maxStack;
-              maxStack++;
-            }
-
-            // figure out beginning and ending times if they are unspecified
-            datum.times.forEach(function (time, i) {
-              if(beginning === 0)
-                if (time.starting_time < minTime || (minTime === 0 && timeIsRelative === false))
-                  minTime = time.starting_time;
-              if(ending === 0)
-                if (time.ending_time > maxTime)
-                  maxTime = time.ending_time;
-            });
-          });
-        });
-
-        if (ending === 0) {
-          ending = maxTime;
-        }
-        if (beginning === 0) {
-          beginning = minTime;
-        }
-      }
-
+      // BB allemaal flauwekul weggehaald
+      maxStack = g.datum().length + 1
+      yAxisMapping = Array.from({length:g.datum().length}, (x,i) => i+1)
       var scaleFactor = (1/(ending - beginning)) * (width - margin.left - margin.right);
 
       // draw the axis
@@ -241,7 +215,8 @@
 
       // draw the chart
       g.each(function(d, i) {
-        chartData = d;
+        console.log(i)
+        chartData = d //[0];
         d.forEach( function(datum, index){
           var data = datum.times;
           //var hasLabel = (typeof(datum.label) != "undefined");
@@ -316,8 +291,10 @@
             .attr("id", (d,i) => datum.id)
             .text( (d,i) => d.label) 
 
-          if (rowSeparatorsColor) {
+          if (false) { // BB voor als we ooit nog lijntjes tussen de regels willen maken...
             var lineYAxis = ( itemHeight + itemMargin / 2 + margin.top + (itemHeight + itemMargin) * yAxisMapping[index]);
+            console.log(lineYAxis)
+            console.log(itemHeight)
             gParent.append("svg:line")
               .attr("class", "row-separator")
               .attr("x1", 0 + margin.left)
@@ -325,7 +302,7 @@
               .attr("y1", lineYAxis)
               .attr("y2", lineYAxis)
               .attr("stroke-width", 1)
-              .attr("stroke", rowSeparatorsColor);
+              .attr("stroke", "#f00");
           }
 
           // add the label
@@ -352,7 +329,20 @@
             }
             return margin.top + itemHeight * 0.75;
           }
-        });
+        }); // BB: end forEach loop
+
+        // BB: Line to seperate the different categories
+        hlines.forEach ( pos => {
+          var lineYAxis = ( itemHeight + itemMargin / 2 + margin.top + (itemHeight + itemMargin) * pos);
+          gParent.append("svg:line")
+            .attr("class", "row-separator")
+            .attr("x1", 0 + margin.left)
+            .attr("x2", width - margin.right)
+            .attr("y1", lineYAxis)
+            .attr("y2", lineYAxis)
+            .attr("stroke-width", 1)
+            .attr("stroke", "#0f0");
+        })
       });
 
       var belowLastItem = (margin.top + (itemHeight + itemMargin) * maxStack);
@@ -465,6 +455,11 @@
     }
 
     // SETTINGS
+    timeline.hlines = function (lines) {
+      if (!arguments.length) return hlines
+      hlines = lines
+      return timeline
+    }
 
     timeline.margin = function (p) {
       if (!arguments.length) return margin;
