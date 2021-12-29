@@ -51,8 +51,13 @@
         axisBgColor = "white",
         chartData = {}
       ;
+   
+      
+      function testFunction() {
+        console.log('asdasd')
+      }
 
-    var appendTimeAxis = function(g, xAxis, yPosition) {
+      var appendTimeAxis = function(g, xAxis, yPosition) {
 
       if(showAxisHeaderBackground){ appendAxisHeaderBackground(g, 0, 0); }
 
@@ -215,7 +220,6 @@
 
       // draw the chart
       g.each(function(d, i) {
-        console.log(i)
         chartData = d //[0];
         d.forEach( function(datum, index){
           var data = datum.times;
@@ -343,13 +347,65 @@
             .attr("stroke-width", 1)
             .attr("stroke", "#0f0");
         })
-      });
+      }); // end g.each()
 
       var belowLastItem = (margin.top + (itemHeight + itemMargin) * maxStack);
       var aboveFirstItem = margin.top;
       var timeAxisYPosition = showAxisTop ? aboveFirstItem : belowLastItem;
       if (showTimeAxis) { appendTimeAxis(g, xAxis, timeAxisYPosition); }
       if (timeAxisTick) { appendTimeAxisTick(g, xAxis, maxStack); }
+
+      // BB Bewegende verticale lijn
+      gParent.append("svg:line")
+         .attr("id", "moveLine")
+         .attr("x1", -1)
+         .attr("x2", -1)
+         .attr("y1", 0)
+         .attr("y1", belowLastItem)
+         .attr("stroke-width", 1)
+         .attr("stroke", 'green')
+         .style("stroke-dasharray", (5,5))
+      gParent.append("svg:rect")
+         .attr("id","moveTextBox")
+         .attr("x", -100)
+         .attr("y", -100)
+         .attr("width", 50)
+         .attr("height", itemHeight)
+         .attr("label", "test")
+         .style("fill", "rgb(0,0,255)")
+         .style("stroke-width", 1)
+         .style("stroke", "rgb(0,0,0)")
+      gParent.append("text")
+         .attr("id", "moveText")
+         .attr("x", -100)
+         .attr("y", -100)
+         .style("fill","white")
+         .text("")
+
+     d3.select("#timeline").on("mousemove", function() {
+	     let pos = d3.mouse(this);
+       let dy = ending.getFullYear() - beginning.getFullYear()
+       let dx = width-margin.left-margin.right
+       let yr = parseInt(beginning.getFullYear() + (dy/dx)*(pos[0]-margin.left))
+
+       d3.select("#moveLine")
+         .attr("x1", pos[0])
+         .attr("x2", pos[0])
+      d3.select("#moveText")
+         .attr("x", pos[0]+14)
+         .attr("y", pos[1]+14+itemHeight/2)
+         .text(yr)
+       d3.select("#moveTextBox")
+         .attr("x", pos[0]+10)
+         .attr("y", pos[1]+10)
+	   }).on('mouseleave', function() { 
+       d3.select("#moveLine")
+         .attr("x1", -1)
+         .attr("x2", -1)
+       d3.select("#moveTextBox")
+         .attr("x", -100)
+         .attr("y", -100)
+     } )
 
       if (width > gParentSize.width) {
         var move = function() {
@@ -451,8 +507,7 @@
           .style("stroke", lineFormat.color)//"rgb(6,120,155)")
           .style("stroke-width", lineFormat.width);
       }
-
-    }
+    } // end timeline
 
     // SETTINGS
     timeline.hlines = function (lines) {
@@ -461,7 +516,13 @@
       return timeline
     }
 
-    timeline.margin = function (p) {
+    //timeline.testFunction = function(ev) {
+    //  //console.log(this.gParent)
+    //  //this.foo()
+    //  console.log(ev)
+    //}
+
+   timeline.margin = function (p) {
       if (!arguments.length) return margin;
       margin = p;
       return timeline;
@@ -526,6 +587,7 @@
       hover = hoverFunc;
       return timeline;
     };
+
 
     timeline.mouseover = function (mouseoverFunc) {
       if (!arguments.length) return mouseover;
