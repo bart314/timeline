@@ -4,8 +4,8 @@
   <meta charset="utf-8"/>
   <title>Renaissance tijdlijn</title>
 
-  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-  <script src="d3-timeline.js"></script>
+  <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script src="d3-renaissance.js"></script>
 
   <style type="text/css">
     .axis path,
@@ -47,7 +47,7 @@
     
 <div id="main">
   <h3>Renaissance timeline</h3>
-   <div id="timeline" style="border:solid red 1px;"></div>
+   <div id="timeline"></div>
 </div>
 </body>
 
@@ -67,13 +67,8 @@
       .stack()
       .margin({left:70, right:30, top:0, bottom:0})
       .hlines([19])
-      //.testFunction ( e => console.log("injected"))
     var svg = d3.select("#timeline").append("svg").attr("width", width)
       .datum(data).call(chart)
-    //document.querySelector("#timeline").addEventListener('click', e => {
-    //  chart.testFunction(e)
-    //  console.dir(e)
-    //})
   }
 
 function get_data_point(data) {
