@@ -39,6 +39,12 @@
 
     body { font-family:Calibri,Helvetica,Verdana,sans-serif; }
     h3 { text-align:center; font-size:xx-large; }
+    p { padding:0 10vw; line-height:140%;}
+    p.small, footer { font-size:x-small; }
+    rect, text { cursor:pointer; }
+    a { text-decoration:none;}
+    a:hover { text-decoration:underline;}
+
 
   </style>
 </head>
@@ -47,12 +53,35 @@
     
 <div id="main">
   <h3>Renaissance timeline</h3>
+  <p class="small"><a href="#" onclick="toggle_intro(this);return false;">hide introduction</a></p>
+ 
+  <div id="intro">
+  <p>In the fall of 2021, I read <a href="https://www.amazon.com/Collector-Lives-Giorgio-Vasari-Invention/dp/0393241319" target="_blank">The Collector of Lifes:  Giorgio Vasari and the Invention of Art</a>. In many ways, a very interesting book, conting lot of information about the Italian Renaissance, the most important artists that emerged during this period, and the role the Medici-family played in these developments. Apart from this, the work includes the most important political events that colored the period</p>
+
+  <p>Though the edition does include a pedigree of the Medici, it fails to deliver a clear and tranparent overview of all these persons and events. It is unclear which artists co-existed with which other artists or which members of the Medici. This page is an attempt to make up for this lack. It shows the lifelines of the most important protagonists, including links to the corresponding wikipedia-pages.</p>
+  </div>
    <div id="timeline"></div>
+
+   <footer>
+     Last update: 30 December 2021<br/>
+     Check <a href="https://github.com/bart314/timeline">this repo on github</a>
+   </footer>
 </div>
 </body>
 
 
 <script>
+  function toggle_intro(el) {
+    const d = document.querySelector("#intro")
+    if (d.style.display == 'none') {
+      d.style.display = 'block'
+      el.innerHTML = 'hide introduction'
+    } else {
+      d.style.display ='none'
+      el.innerHTML = 'show introduction'
+    }
+  }
+
   const width = document.querySelector('#main').offsetWidth
   function create_timeline(data) {
     var chart = d3.timeline()
@@ -102,11 +131,6 @@ fetch('data.json')
   .then( resp => resp.json() )
   .then (json => translate_data(json) )
   .then (data => create_timeline(data) )
-  .then ( e => {
-    document.querySelectorAll("rect, text").forEach(el => {
-      el.addEventListener('click', e => console.log(e))
-    })
-  })
 
 </script>
 </html>

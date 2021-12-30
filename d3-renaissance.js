@@ -114,6 +114,7 @@
             .attr("id", function(d, i) { // TODO
               return datum.id //? d.id : "timelineItem_"+index+"_"+i;
             })
+            .on('click', d => window.open(d.url, '_blank'))
           
           //Adding texts on top of the rect's
           g.selectAll("svg").data(data).enter()
@@ -122,6 +123,7 @@
             .attr("y", getStackTextPosition)
             .attr("id", (d,i) => datum.id)
             .text( (d,i) => d.label) 
+            .on('click', d => window.open(d.url, '_blank'))
 
           if (typeof(datum.icon) !== "undefined") {
             gParent.append("image")
