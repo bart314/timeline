@@ -2,7 +2,10 @@
 <html>
 <head>
   <meta charset="utf-8"/>
-  <title>Renaissance tijdlijn</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Renaissance timeline</title>
 
   <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
   <script src="d3-renaissance.js"></script>
@@ -53,13 +56,16 @@
     
 <div id="main">
   <h3>Renaissance timeline</h3>
-  <p class="small"><a href="#" onclick="toggle_intro(this);return false;">hide introduction</a></p>
+  <p class="small">
+    <a href="#" onclick="toggle_intro(this);return false;">hide introduction</a> | 
+    <a href="#" onclick="toggle_language(this);return false">English</a>
+  </p>
  
   <div id="intro">
-  <p>In the fall of 2021, I read <a href="https://www.amazon.com/Collector-Lives-Giorgio-Vasari-Invention/dp/0393241319" target="_blank">The Collector of Lifes:  Giorgio Vasari and the Invention of Art</a>. In many ways, a very interesting book, conting lot of information about the Italian Renaissance, the most important artists that emerged during this period, and the role the Medici-family played in these developments. Apart from this, the work includes the most important political events that colored the period</p>
-
-  <p>Though the edition does include a pedigree of the Medici, it fails to deliver a clear and tranparent overview of all these persons and events. It is unclear which artists co-existed with which other artists or which members of the Medici. This page is an attempt to make up for this lack. It shows the lifelines of the most important protagonists, including links to the corresponding wikipedia-pages.</p>
+    <p>L'autunno scorso, ho letto <a href="https://www.amazon.com/Collector-Lives-Giorgio-Vasari-Invention/dp/0393241319" target="_blank">The Collector of Lives; Giorgio Vasari and the Invention of Art</a>, libro di <a href="https://history.nd.edu/people/ingrid-rowland/" target="_blank">Ingrid Rowland</a> e <a href="https://noahcharney.smugmug.com/" target="_blank">Noah Charney</a>. Quest'è un opero molto interessante sulla Rinascimento Italiano, descrivendo i eventi politiche che occorrevano e i artisti più importanti qui vivevano sull'epoca – e anche il ruolo giocato dalla famiglia dei Medici.</p>
+    <p>Nonostante il libro contiene un pedigree della Medici, il manca un schema utile su queste persone e eventi. Leggendo, uno perde la panoramico su tutte le nome en influenze. Non è immediatamente chiaro chi vive nel stesso tempo con chi, chi è stato un gran influence su chi, o che eventi occorrano quando. Cioè, per rimediare queste perdita, ho fatto queste pagina. Il mostra i protagonisti più importanti sul libro, compreso links a le pagine relative su wikipedia.</p>
   </div>
+
    <div id="timeline"></div>
 
    <footer>
@@ -71,6 +77,18 @@
 
 
 <script>
+  let text_backup = `
+    <p>In the fall of 2021, I read <a href="https://www.amazon.com/Collector-Lives-Giorgio-Vasari-Invention/dp/0393241319" target="_blank">The Collector of Lifes:  Giorgio Vasari and the Invention of Art</a>. In many ways, a very interesting book, giving lots of information about the Italian Renaissance, the most important artists that emerged during this period, and the role the Medici-family played in these developments. Apart from this, the work includes the most important political events that colored the period</p>
+    <p>Though the edition does include a pedigree of the Medici, it fails to deliver a clear and tranparent overview of all these persons and events. It is unclear which artists co-existed with which other artists or which members of the Medici. This page is an attempt to make up for this lack. It shows the lifelines of the most important protagonists, including links to the corresponding wikipedia-pages.</p>
+  `
+  function toggle_language(el){
+    const d = document.querySelector("#intro")
+    let tmp = d.innerHTML
+    d.innerHTML = text_backup
+    text_backup = tmp
+    el.innerHTML =  el.innerHTML.toLowerCase()=='english' ? 'Italiano' : 'English'
+  }
+  
   function toggle_intro(el) {
     const d = document.querySelector("#intro")
     if (d.style.display == 'none') {
