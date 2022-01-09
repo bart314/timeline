@@ -24,123 +24,150 @@
         ending = 0,
         margin = {left: 30, right:30, top: 30, bottom:30},
         hlines = [],
+        maxStack = 0,
         stacked = false,
         rotateTicks = false,
         itemHeight = 25,
         itemMargin = 5,
         showTimeAxis = true,
-        showAxisTop = false,
         timeAxisTick = false,
         timeAxisTickFormat = {stroke: "stroke-dasharray", spacing: "4 10"},
         showAxisHeaderBackground = false,
         showAxisNav = false
    
-  var appendTimeAxis = function(g, xAxis, yPosition) {
+  const appendTimeAxis = function(g, xAxis, yPosition) {
       if(showAxisHeaderBackground){ appendAxisHeaderBackground(g, 0, 0); }
       if(showAxisNav){ appendTimeAxisNav(g) };
 
-      var axis = g.append("g")
+      g.append("g")
         .attr("class", "axis")
-        .attr("transform", "translate(" + 0 + "," + yPosition + ")")
+        .attr("transform", `translate(0, ${yPosition})`)
         .call(xAxis);
   };
 
 
-  var appendTimeAxisTick = function(g, xAxis, maxStack) {
+  const appendTimeAxisTick = function(g, xAxis, maxStack) {
       g.append("g")
         .attr("class", "axis")
-        .attr("transform", "translate(" + 0 + "," + (margin.top + (itemHeight + itemMargin) * maxStack) + ")")
+        .attr("transform", `translate(0, ${(margin.top + (itemHeight + itemMargin) * maxStack)})`)
         .attr(timeAxisTickFormat.stroke, timeAxisTickFormat.spacing)
         .call(xAxis.tickFormat("").tickSize(-(margin.top + (itemHeight + itemMargin) * (maxStack - 1) + 3), 0, 0));
   };
 
   function timeline (gParent) {
-      var g = gParent.append("g");
-      var gParentSize = gParent[0][0].getBoundingClientRect();
-      var gParentItem = d3.select(gParent[0][0]);
+      const g = gParent.append("g");
+      const gParentSize = gParent[0][0].getBoundingClientRect();
+      const gParentItem = d3.select(gParent[0][0]);
 
-      var width = gParentItem.attr("width");
-      var maxStack = g.datum().length + 1
-      var yAxisMapping = Array.from({length:g.datum().length}, (x,i) => i+1)
-      var scaleFactor = (1/(ending - beginning)) * (width - margin.left - margin.right);
+      const width = gParentItem.attr("width");
+      const maxStack = g.datum().length + 1
+      const yAxisMapping = Array.from({length:g.datum().length}, (x,i) => i+1)
+      const scaleFactor = (1/(ending - beginning)) * (width - margin.left - margin.right);
 
       // draw the axis
-      var xScale = d3.time.scale()
+      const xScale = d3.time.scale()
         .domain([beginning, ending])
         .range([margin.left, width - margin.right]);
 
-      var xAxis = d3.svg.axis()
+      const xAxis = d3.svg.axis()
         .scale(xScale)
         .orient(orient)
         .tickFormat(tickFormat.format)
-        .tickSize(tickFormat.tickSize);
+        .tickSize(tickFormat.tickSize)
+        .ticks(tickFormat.numTicks || tickFormat.tickTime, tickFormat.tickInterval);
+      const timeAxisYPosition = (margin.top + (itemHeight + itemMargin) * maxStack);
+      const eventYPosition = getEventYPosition(timeAxisYPosition)
+      appendTimeAxis(g, xAxis, timeAxisYPosition)
+      appendTimeAxisTick(g, xAxis, maxStack)
+      var over_event = false
 
-      xAxis.ticks(tickFormat.numTicks || tickFormat.tickTime, tickFormat.tickInterval);
 
       // draw the chart
       g.each(function(d, i) {
         chartData = d 
         d.forEach( function(datum, index){
           var data = datum.times;
+          if (data[0].starting_time.valueOf() == data[0].ending_time.valueOf()) draw_event(data) // could be a problem further down the road
+          else draw_rectangle(data)
 
-          g.selectAll("svg").data(data).enter()
-            .append(function(d, i) {
-                return document.createElementNS(d3.ns.prefix.svg, "display" in d? d.display:display);
-            })
-            .attr("x", getXPos)
-            .attr("y", getStackPosition)
-            .attr("width", function (d, i) {
-              return (d.ending_time - d.starting_time) * scaleFactor;
-            })
-            .attr("cy", function(d, i) {
-                return getStackPosition(d, i) + itemHeight/2;
-            })
-            .attr("cx", getXPos)
-            .attr("r", itemHeight / 2)
-            .attr("height", itemHeight)
-            .style("fill", function(d, i){
-              var dColorPropName;
-              if (d.color) return d.color;
-              if( colorPropertyName ){
-                dColorPropName = d[colorPropertyName];
-                if ( dColorPropName ) {
-                  return colorCycle( dColorPropName );
-                } else {
-                  return colorCycle( datum[colorPropertyName] );
-                }
-              }
-              return colorCycle(index);
-            })
-            .attr("id", function(d, i) { // TODO
-              return datum.id //? d.id : "timelineItem_"+index+"_"+i;
-            })
-            .on('click', d => window.open(d.url, '_blank'))
-          
-          //Adding texts on top of the rect's
-          g.selectAll("svg").data(data).enter()
-            .append("text")
-            .attr("x", getXTextPos)
-            .attr("y", getStackTextPosition)
-            .attr("id", (d,i) => datum.id)
-            .text( (d,i) => d.label) 
-            .on('click', d => window.open(d.url, '_blank'))
 
-          if (typeof(datum.icon) !== "undefined") {
-            gParent.append("image")
-              .attr("class", "timeline-label")
-              .attr("transform", "translate("+ 0 +","+ (margin.top + (itemHeight + itemMargin) * yAxisMapping[index])+")")
-              .attr("xlink:href", datum.icon)
-              .attr("width", margin.left)
-              .attr("height", itemHeight);
-          }
+        
+          function draw_rectangle(data) {
+            g.selectAll("svg").data(data).enter()
+              .append('rect') 
+              .attr("x", getXPos)
+              .attr("y", getStackPosition)
+              .attr("width", function (d, i) {
+                return (d.ending_time - d.starting_time) * scaleFactor;
+              })
+              .attr("height", itemHeight)
+              .style("fill", get_color())
+              .on('click', d => window.open(d.url, '_blank'))
+            
+            //Adding texts on top of the rect's
+            g.selectAll("svg").data(data).enter()
+              .append("text")
+              .attr("x", getXTextPos)
+              .attr("y", getStackTextPosition)
+              .attr("id", (d,i) => datum.id)
+              .text( (d,i) => d.label) 
+              .on('click', d => window.open(d.url, '_blank'))
+          } // end draw_rectangle
 
+
+          function draw_event(data) {
+            // events must go under the last line
+            g.selectAll("svg").data(data).enter()
+              .append("image")
+              .attr("x", getXPos) // (datum.times[0]) - itemHeight/2)
+              .attr("y", eventYPosition)
+              .attr('width', itemHeight*1.5)
+              .attr('height', itemHeight*1.5)
+              .attr("xlink:href", (d,i) => d.icon)
+              .attr("title", d => d.label)
+              .on('click', d => window.open(d.url, '_blank'))
+              .on('mouseover', function(d, i) {
+                hide_elements('#moveLine','#moveTextBox', '#moveText')
+                over_event = true
+                let pos = d3.mouse(this)
+                d3.select("#eventRect")
+                  .attr('x', pos[0]+10)
+                  .attr('y', pos[1]+10)
+                  .attr('width', d.label.length * 8)
+                d3.select("#eventText")
+                  .attr('x', pos[0]+14)
+                  .attr('y', pos[1]+28)
+                  .text(d.label)
+              })
+              .on('mouseleave', d => {
+                over_event = false
+                hide_elements('#eventRect','#eventText')
+              })
+          } // end draw_event
+
+          // helper functions
           function getStackPosition(d, i) {
-              return margin.top + (itemHeight + itemMargin) * yAxisMapping[index];
+            return margin.top + (itemHeight + itemMargin) * yAxisMapping[index];
           }
 
           function getStackTextPosition(d, i) {
-              return margin.top + (itemHeight + itemMargin) * yAxisMapping[index] + itemHeight * 0.75;
+            return margin.top + (itemHeight + itemMargin) * yAxisMapping[index] + itemHeight * 0.75;
           }
+
+          function get_color(){
+            var dColorPropName;
+            if (d.color) return d.color;
+            if( colorPropertyName ){
+              dColorPropName = d[colorPropertyName];
+              if ( dColorPropName ) {
+                return colorCycle( dColorPropName );
+              } else {
+                return colorCycle( datum[colorPropertyName] );
+              }
+            }
+            return colorCycle(index);
+          }
+
         }); // BB: end forEach loop
 
         // BB: Line to seperate the different categories
@@ -157,11 +184,25 @@
         })
       }); // end g.each()
 
-      var belowLastItem = (margin.top + (itemHeight + itemMargin) * maxStack);
-      var aboveFirstItem = margin.top;
-      var timeAxisYPosition = showAxisTop ? aboveFirstItem : belowLastItem;
-      if (showTimeAxis) { appendTimeAxis(g, xAxis, timeAxisYPosition); }
-      if (timeAxisTick) { appendTimeAxisTick(g, xAxis, maxStack); }
+
+      //label for the events
+      g.append('rect')
+        .attr('id','eventRect')
+        .attr('width', 100)
+        .attr('height', itemHeight)
+        .attr("x", -100)
+        .attr("y", -100)
+        .style("fill", "lightblue")
+        .style("stroke-width", 1)
+        .style("stroke", "rgb(0,0,0)")
+      g.append('text')
+        .attr('id','eventText')
+        .attr("x", -100)
+        .attr("y", -100)
+        .style("fill","black")
+        .text("")
+
+
 
       // BB Bewegende verticale lijn
       gParent.append("svg:line")
@@ -169,10 +210,12 @@
          .attr("x1", -1)
          .attr("x2", -1)
          .attr("y1", 0)
-         .attr("y1", belowLastItem)
+         .attr("y1", timeAxisYPosition)
          .attr("stroke-width", 1)
          .attr("stroke", 'green')
          .style("stroke-dasharray", (5,5))
+
+      // label for the years
       gParent.append("svg:rect")
          .attr("id","moveTextBox")
          .attr("x", -100)
@@ -191,6 +234,7 @@
          .text("")
 
      d3.select("#timeline").on("mousemove", function() {
+       if (over_event) return;
 	     let pos = d3.mouse(this);
        let dy = ending.getFullYear() - beginning.getFullYear()
        let dx = width-margin.left-margin.right
@@ -199,7 +243,7 @@
        d3.select("#moveLine")
          .attr("x1", pos[0])
          .attr("x2", pos[0])
-      d3.select("#moveText")
+       d3.select("#moveText")
          .attr("x", pos[0]+14)
          .attr("y", pos[1]+14+itemHeight/2)
          .text(yr)
@@ -241,11 +285,25 @@
         return margin.left + (d.starting_time - beginning) * scaleFactor + 5;
       }
 
+      function getEventYPosition (xAxisPos) { 
+        let halfImgSize = itemHeight * .75
+        let lastLineYPos = itemHeight + itemMargin / 2 + margin.top + (itemHeight + itemMargin) * hlines.at(-1)
+        return xAxisPos - halfImgSize - ( (xAxisPos - lastLineYPos) / 2 )
+      }
+
       function setHeight() {
         // set height based off of item height
         height = gSize.height + gSize.top - gParentSize.top;
         // set bounding rectangle height
         d3.select(gParent[0][0]).attr("height", height);
+      }
+
+      function hide_elements(...els) {
+        for (el of els) {
+          d3.select(el)
+            .attr('x', -100)
+            .attr('y', -100)
+        }
       }
     } // end timeline
 

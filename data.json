@@ -226,4 +226,91 @@
       "tot": "1587-10-19",
       "url": "https://it.wikipedia.org/wiki/Francesco_I_de%27_Medici"
     }
+  ],
+  "events":
+  [
+    [{
+      "naam": "Gutenberg Bible",
+      "van": "1450-01-01",
+      "tot": "1450-01-01",
+      "url": "https://en.wikipedia.org/wiki/Gutenberg_Bible",
+      "icon":"imgs/gutenberg.png"
+    },
+    {
+      "naam": "End of hundred year's war",
+      "van": "1453-10-19",
+      "tot": "1453-10-19",
+      "url": "https://it.wikipedia.org/wiki/Guerra_dei_cent%27anni",
+      "icon":"imgs/hunderd_year_war.png"
+    },
+    {
+      "naam": "Opening of Accademia di belle arti",
+      "van": 1563,
+      "tot": 1563,
+      "url": "https://it.wikipedia.org/wiki/Accademia_delle_arti_del_disegno",
+      "icon":"imgs/accadmia.png"
+    },
+    {
+      "naam": "Coronation of Charles V",
+      "van": "1530-02-24",
+      "tot": "1530-02-24",
+      "url": "https://en.wikipedia.org/wiki/Coronation_of_Charles_V",
+      "icon": "imgs/coronation.png"
+    },
+    {
+      "naam": "Sack of Rome",
+      "van": "1527-05-06",
+      "tot": "1527-05-06",
+      "url": "https://it.wikipedia.org/wiki/Sacco_di_Roma_(1527)",
+      "icon": "imgs/sack-of-rome.png"
+    },
+    {
+      "naam": "Finding of Laocoön",
+      "van": "1506-01-15",
+      "tot": "1506-01-15",
+      "url": "https://it.wikipedia.org/wiki/Gruppo_del_Laocoonte#Il_ritrovamento",
+      "icon": "imgs/laocoon.png"
+    },
+    {
+      "naam": "Battle of Cascina",
+      "van": "1364-07-13",
+      "tot": "1364-07-13",
+      "url": "https://it.wikipedia.org/wiki/Battaglia_di_Cascina",
+      "icon": "imgs/casciana.png"
+    },
+    {
+      "naam": "Edict of Worms",
+      "van": "1521-05-25",
+      "tot": "1521-05-25",
+      "url": "https://en.wikipedia.org/wiki/Diet_of_Worms#Edict_of_Worms",
+      "icon": "imgs/worms.png"
+    },
+    {
+      "naam": "Council of Trent",
+      "van": 1563,
+      "tot": 1563,
+      "url": "https://en.wikipedia.org/wiki/Council_of_Trent",
+      "icon": "imgs/trent.png"
+    },
+    {
+      "naam": "St. Bartholomew's Massacre",
+      "van": "1572-08-24",
+      "tot": "1572-08-24",
+      "url": "https://en.wikipedia.org/wiki/St._Bartholomew%27s_Day_massacre",
+      "icon": "imgs/bartholomeus.png"
+    },
+    {
+      "naam": "Battle of Anghiari",
+      "van": "1440-06-29",
+      "tot": "1440-06-29",
+      "url": "https://en.wikipedia.org/wiki/Battle_of_Anghiari",
+      "icon": "imgs/anghiari.png"
+    },
+    {
+      "naam": "Opening of Uffizi",
+      "van": 1581,
+      "tot": 1581,
+      "url": "https://en.wikipedia.org/wiki/Uffizi",
+      "icon": "imgs/uffizi.png"
+    }]
   ]}

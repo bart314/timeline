@@ -6,50 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Renaissance timeline</title>
+  <link rel="stylesheet" href="style.css">
 
   <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
   <script src="d3-renaissance.js"></script>
 
-  <style type="text/css">
-    .axis path,
-    .axis line {
-      fill: none;
-      stroke: black;
-      shape-rendering: crispEdges;
-    }
-
-    .axis text {
-      font-family: sans-serif;
-      font-size: 10px;
-    }
-
-    .timeline-label {
-      font-family: sans-serif;
-      font-size: 12px;
-    }
-
-    #timeline2 .axis {
-      transform: translate(0px,40px);
-      -ms-transform: translate(0px,40px); /* IE 9 */
-      -webkit-transform: translate(0px,40px); /* Safari and Chrome */
-      -o-transform: translate(0px,40px); /* Opera */
-      -moz-transform: translate(0px,40px); /* Firefox */
-    }
-    
-    .coloredDiv {
-      height:20px; width:20px; float:left;
-    }
-
-    body { font-family:Calibri,Helvetica,Verdana,sans-serif; }
-    h3 { text-align:center; font-size:xx-large; }
-    p { padding:0 10vw; line-height:140%;}
-    p.small, footer { font-size:x-small; }
-    rect, text { cursor:pointer; }
-    a { text-decoration:none;}
-    a:hover { text-decoration:underline;}
-
-
-  </style>
 </head>
 
 <body>
@@ -69,7 +30,7 @@
    <div id="timeline"></div>
 
    <footer>
-     Last update: 30 December 2021<br/>
+     Last update: 9 January 2022br/>
      Check <a href="https://github.com/bart314/timeline">this repo on github</a>
    </footer>
 </div>
@@ -100,6 +61,7 @@
     }
   }
 
+
   const width = document.querySelector('#main').offsetWidth
   function create_timeline(data) {
     var chart = d3.timeline()
@@ -113,7 +75,7 @@
       .showTimeAxisTick() // toggles tick marks
       .stack()
       .margin({left:70, right:30, top:0, bottom:0})
-      .hlines([19])
+      .hlines([19, 28])
     var svg = d3.select("#timeline").append("svg").attr("width", width)
       .datum(data).call(chart)
   }
@@ -123,12 +85,13 @@ function get_data_point(data) {
         starting_time:new Date(data.van),
         ending_time:new Date(data.tot),
         label:data.naam,
-        url: data.url
+        url: data.url,
+        icon:data.icon
       }
 }
 
 function translate_data(json) {
-  const cats = ['artists','medici']
+  const cats = ['artists', 'medici','events']
   let rv = []
   cats.forEach( cat => {
     json[cat].forEach( el => {
